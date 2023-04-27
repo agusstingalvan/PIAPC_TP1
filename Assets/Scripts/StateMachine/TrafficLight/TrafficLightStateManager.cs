@@ -12,7 +12,9 @@ public class TrafficLightStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _currentState = _stateStop ;
+        int randomNumber = Random.Range(0, 2);
+        _currentState = (randomNumber == 0)? _stateStop : _stateGo;
+        //_currentState = _stateStop;
         _currentState.EnterState(this);
         StartCoroutine(ChangeState());
     }
@@ -39,7 +41,7 @@ public class TrafficLightStateManager : MonoBehaviour
     IEnumerator ChangeState()
     {
         //Is a function recursive
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         if(_currentState.type == "stop")
         {

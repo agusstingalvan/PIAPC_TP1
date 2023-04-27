@@ -6,7 +6,8 @@ public class PlayerWaitState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-        player._agent.isStopped = false;
+        status = "Waiting";
+        player._agent.isStopped = true;
     }
 
 

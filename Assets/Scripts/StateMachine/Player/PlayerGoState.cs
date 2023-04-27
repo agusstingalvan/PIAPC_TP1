@@ -6,7 +6,8 @@ public class PlayerGoState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-        player._agent.isStopped = true;
+        status = "Going";
+        player._agent.isStopped = false;
     }
 
 

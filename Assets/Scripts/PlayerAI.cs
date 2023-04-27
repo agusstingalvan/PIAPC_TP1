@@ -11,11 +11,12 @@ public class PlayerAI : MonoBehaviour
     private NavMeshAgent _agent;
     private Transform _player;
     private string _targetName;
+    private string _status;
 
     [SerializeField] private GameObject[] _target;
     //[SerializeField] private GameObject _nextPointObject;
 
-    LightStateManager _lsmanager;
+
     TrafficLightStateManager _tlsmanager;
 
     [SerializeField] TMPro.TextMeshProUGUI _flText;
@@ -25,36 +26,32 @@ public class PlayerAI : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _player = GetComponent<Transform>();
-        //_lsmanager = new LightStateManager();
+        
+        //States Managers
         _tlsmanager = new TrafficLightStateManager();
+
+        if(GetComponent<PlayerStateManager>() != null)
+        {
+           _status = GetComponent<PlayerStateManager>().statusPlayer;
+        }
     }
 
     void Update()
     {
-        foreach (GameObject lights in _target)
+        
+        foreach (GameObject light in _target)
         {
-            //if (lights.GetComponentInChildren<LightStateManager>().visited == false)
-            //{
-            //    _agent.SetDestination(lights.transform.position);
-
-
-            //    FuzzyLogic(lights.transform, _player);
-            //    _targetName = lights.name;
-            //}
-
-            if (lights.GetComponentInChildren<TrafficLightStateManager>())
+            if (light.GetComponentInChildren<TrafficLightStateManager>())
             {
-                _agent.SetDestination(lights.transform.position);
-                _targetName = lights.GetComponentInChildren<TrafficLightStateManager>()._currentState.type;
+                _agent.SetDestination(light.transform.position);
+                
             }
         }
-
-
-
-
-
-        //Instantiate(_nextPointObject, _agent.nextPosition, transform.rotation);
-
+        if (_status != null)
+        {
+            _status = GetComponent<PlayerStateManager>().statusPlayer;
+            _flText.text = _status;
+        }
     }
     
 
@@ -85,10 +82,7 @@ public class PlayerAI : MonoBehaviour
             _flText.text = _targetName + " llegué..";
         }
     }
-    void OnCollisionEnter(Collision collision)
-    {
 
-    }
 
     
 }
