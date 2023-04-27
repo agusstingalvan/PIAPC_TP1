@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerAI : MonoBehaviour
 {
@@ -14,27 +16,36 @@ public class PlayerAI : MonoBehaviour
     //[SerializeField] private GameObject _nextPointObject;
 
     LightStateManager _lsmanager;
+    TrafficLightStateManager _tlsmanager;
 
     [SerializeField] TMPro.TextMeshProUGUI _flText;
+
 
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
         _player = GetComponent<Transform>();
-        _lsmanager = new LightStateManager();
+        //_lsmanager = new LightStateManager();
+        _tlsmanager = new TrafficLightStateManager();
     }
 
     void Update()
     {
         foreach (GameObject lights in _target)
         {
-            if (lights.GetComponentInChildren<LightStateManager>().visited == false)
+            //if (lights.GetComponentInChildren<LightStateManager>().visited == false)
+            //{
+            //    _agent.SetDestination(lights.transform.position);
+
+
+            //    FuzzyLogic(lights.transform, _player);
+            //    _targetName = lights.name;
+            //}
+
+            if (lights.GetComponentInChildren<TrafficLightStateManager>())
             {
                 _agent.SetDestination(lights.transform.position);
-
-
-                FuzzyLogic(lights.transform, _player);
-                _targetName = lights.name;
+                _targetName = lights.GetComponentInChildren<TrafficLightStateManager>()._currentState.type;
             }
         }
 
@@ -45,6 +56,7 @@ public class PlayerAI : MonoBehaviour
         //Instantiate(_nextPointObject, _agent.nextPosition, transform.rotation);
 
     }
+    
 
     private void FuzzyLogic(Transform _targetPos, Transform _playerPos)
     {
@@ -70,8 +82,13 @@ public class PlayerAI : MonoBehaviour
         }
         if (distance < 20 && distance >= 0)
         {
-            _flText.text = _targetName + " llegué..";
+            _flText.text = _targetName + " lleguÃ©..";
         }
     }
+    void OnCollisionEnter(Collision collision)
+    {
 
+    }
+
+    
 }
