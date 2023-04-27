@@ -14,7 +14,6 @@ public class TrafficLightStateManager : MonoBehaviour
     {
         int randomNumber = Random.Range(0, 2);
         _currentState = (randomNumber == 0)? _stateStop : _stateGo;
-        //_currentState = _stateStop;
         _currentState.EnterState(this);
         StartCoroutine(ChangeState());
     }
@@ -27,21 +26,16 @@ public class TrafficLightStateManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.tag == "Player")
-        //{
-        //    _currentState.OnTriggerEnter(this);
-        //    _currentState = _stateGo;
-        //}
     }
     private void OnTriggerExit(Collider other)
     {
-        //_currentState.OnTriggerExit(this);
     }
 
     IEnumerator ChangeState()
     {
         //Is a function recursive
-        yield return new WaitForSeconds(10f);
+        int randomNumber = Random.Range(5, 3);
+        yield return new WaitForSeconds(randomNumber);
 
         if(_currentState.type == "stop")
         {
