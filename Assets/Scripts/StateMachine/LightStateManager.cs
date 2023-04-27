@@ -29,8 +29,7 @@ public class LightStateManager : MonoBehaviour
             visited = true;
             _currentState.OnTriggerEnter(this);
             _currentState = _lightVisited;
-            
-}
+         }
 
     }
 

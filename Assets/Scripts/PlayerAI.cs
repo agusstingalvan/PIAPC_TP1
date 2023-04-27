@@ -11,7 +11,7 @@ public class PlayerAI : MonoBehaviour
     private string _targetName;
 
     [SerializeField] private GameObject[] _target;
-    [SerializeField] private GameObject _nextPointObject;
+    //[SerializeField] private GameObject _nextPointObject;
 
     LightStateManager _lsmanager;
 
@@ -26,8 +26,7 @@ public class PlayerAI : MonoBehaviour
 
     void Update()
     {
-
-        foreach(GameObject lights in _target)
+        foreach (GameObject lights in _target)
         {
             if (lights.GetComponentInChildren<LightStateManager>().visited == false)
             {
@@ -38,10 +37,10 @@ public class PlayerAI : MonoBehaviour
                 _targetName = lights.name;
             }
         }
-        
 
 
-        
+
+
 
         //Instantiate(_nextPointObject, _agent.nextPosition, transform.rotation);
 
@@ -53,28 +52,26 @@ public class PlayerAI : MonoBehaviour
 
         //Debug.Log(distance);
 
-        if(distance >= 40)
+        if (distance >= 40)
         {
             _flText.text = _targetName + " lejos!";
-        } 
-        if(distance < 45 && distance >= 30)
+        }
+        if (distance < 45 && distance >= 30)
         {
             _flText.text = _targetName + " menos lejos..";
         }
-        if(distance < 30 && distance >= 25)
+        if (distance < 30 && distance >= 25)
         {
             _flText.text = _targetName + " cerca..";
         }
-        if(distance < 25 && distance >= 20)
+        if (distance < 25 && distance >= 20)
         {
             _flText.text = _targetName + " mas cerca..";
         }
-        if(distance < 20 && distance >= 0)
+        if (distance < 20 && distance >= 0)
         {
             _flText.text = _targetName + " llegué..";
         }
-
-
     }
 
 }

@@ -8,7 +8,7 @@ public class LightNotVisited : LightBaseState
    
     public override void EnterState(LightStateManager ligth)
     {
-
+        
     }
 
 
@@ -25,6 +25,6 @@ public class LightNotVisited : LightBaseState
 
     public override void OnTriggerExit(LightStateManager ligth)
     {
-        
+
     }
 }

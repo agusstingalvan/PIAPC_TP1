@@ -24,6 +24,5 @@ public class LightVisited : LightBaseState
     public override void OnTriggerExit(LightStateManager ligth)
     {
         ligth.GetComponent<Light>().color = Color.blue;
-        
     }
 }
