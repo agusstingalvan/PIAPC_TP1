@@ -29,7 +29,7 @@ public class PlayerAI : MonoBehaviour
         
         //States Managers
         _tlsmanager = new TrafficLightStateManager();
-
+        
         if(GetComponent<PlayerStateManager>() != null)
         {
            _status = GetComponent<PlayerStateManager>().statusPlayer;
@@ -38,13 +38,13 @@ public class PlayerAI : MonoBehaviour
 
     void Update()
     {
-        
+
         foreach (GameObject light in _target)
         {
-            if (light.GetComponentInChildren<TrafficLightStateManager>())
+
+            if (light.GetComponentInChildren<TrafficLightStateManager>().visited == false)
             {
                 _agent.SetDestination(light.transform.position);
-                
             }
         }
         if (_status != null)

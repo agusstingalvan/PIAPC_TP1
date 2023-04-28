@@ -32,7 +32,7 @@ public class PlayerStateManager : MonoBehaviour
 
         if (_trafficLightCurrent != null)
         {
-            if (_trafficLightCurrent._currentState.type == "go")
+            if (_trafficLightCurrent._currentState.type == "go" && !_trafficLightCurrent.inLastLight)
             {
                 _currentState = _stateGo;
                 _currentState.EnterState(this);
@@ -47,6 +47,16 @@ public class PlayerStateManager : MonoBehaviour
         if(other.tag == "TrafficLight")
         {
             _trafficLightCurrent = other.GetComponentInChildren<TrafficLightStateManager>();
+            if (_trafficLightCurrent.inLastLight)
+            {
+                _agent.isStopped = true;
+                _agent.velocity = new Vector3(0, 0, 0);
+                _currentState = _stateWait;
+                _currentState.EnterState(this);
+                statusPlayer = "Gano";
+                return;
+            }
+            
             string type = other.GetComponentInChildren<TrafficLightStateManager>()._currentState.type;
             if(type == "stop")
             {
@@ -54,6 +64,7 @@ public class PlayerStateManager : MonoBehaviour
                 _currentState.EnterState(this);
                 statusPlayer = _currentState.status;
             }
+            
         }
     }
 }

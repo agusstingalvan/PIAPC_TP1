@@ -34,7 +34,7 @@ public class AI : MonoBehaviour
                 _agent.SetDestination(lights.transform.position);
 
 
-                FuzzyLogic(lights.transform, _player);
+                //FuzzyLogic(lights.transform, _player);
                 _targetName = lights.name;
             }
         }

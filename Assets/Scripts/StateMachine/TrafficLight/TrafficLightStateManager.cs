@@ -9,6 +9,8 @@ public class TrafficLightStateManager : MonoBehaviour
     TrafficLightStateGo _stateGo = new TrafficLightStateGo();
     TrafficLightStateStop _stateStop = new TrafficLightStateStop();
 
+    public bool visited = false;
+    public bool inLastLight;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +28,14 @@ public class TrafficLightStateManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "Player")
+        {
+            visited = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
+        
     }
 
     IEnumerator ChangeState()
