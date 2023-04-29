@@ -5,9 +5,11 @@ using UnityEngine;
 public class TrafficLightStateManager : MonoBehaviour
 {
     public TrafficLightBaseState _currentState;
+    public TrafficLightBaseState _oldState;
 
-    TrafficLightStateGo _stateGo = new TrafficLightStateGo();
+    TrafficLightWarn _stateWarn = new TrafficLightWarn();
     TrafficLightStateStop _stateStop = new TrafficLightStateStop();
+    TrafficLightStateGo _stateGo = new TrafficLightStateGo();
 
     public bool visited = false;
     public bool inLastLight;
@@ -15,7 +17,7 @@ public class TrafficLightStateManager : MonoBehaviour
     void Start()
     {
         int randomNumber = Random.Range(0, 2);
-        _currentState = (randomNumber == 0)? _stateStop : _stateGo;
+        _currentState = (randomNumber == 0) ? _stateStop : _stateGo;
         _currentState.EnterState(this);
         StartCoroutine(ChangeState());
     }
@@ -40,19 +42,30 @@ public class TrafficLightStateManager : MonoBehaviour
 
     IEnumerator ChangeState()
     {
-        //Is a function recursive
-        int randomNumber = Random.Range(5, 3);
-        yield return new WaitForSeconds(randomNumber);
-
-        if(_currentState.type == "stop")
+        yield return new WaitForSeconds(7);
+        while (true)
         {
-            _currentState = _stateGo;
-            _currentState.EnterState(this);
-        }else if(_currentState.type == "go")
-        {
-            _currentState = _stateStop;
-            _currentState.EnterState(this);
+            if (_currentState == _stateStop || _currentState == _stateGo)
+            {
+                _oldState = _currentState;
+                _currentState = _stateWarn;
+                _currentState.EnterState(this);
+                yield return new WaitForSeconds(3);
+            }
+            else if (_currentState == _stateWarn && _oldState == _stateStop)
+            {
+                _oldState = _currentState;
+                _currentState = _stateGo;
+                _currentState.EnterState(this);
+                yield return new WaitForSeconds(7);
+            }
+            else if (_currentState == _stateWarn && _oldState == _stateGo)
+            {
+                _oldState = _currentState;
+                _currentState = _stateStop;
+                _currentState.EnterState(this);
+                yield return new WaitForSeconds(7);
+            }
         }
-        StartCoroutine(ChangeState());
     }
 }

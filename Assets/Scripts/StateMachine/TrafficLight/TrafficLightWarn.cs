@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class TrafficLightStateStop : TrafficLightBaseState
+public class TrafficLightWarn : TrafficLightBaseState
 {
     public override void EnterState(TrafficLightStateManager ligth)
     {
-        type = "stop";
-        ligth.GetComponent<Light>().color = Color.red;
+        type = "warn";
+        ligth.GetComponent<Light>().color = Color.yellow;
         Debug.Log(type);
     }
 
@@ -19,11 +18,9 @@ public class TrafficLightStateStop : TrafficLightBaseState
 
     public override void OnTriggerEnter(TrafficLightStateManager ligth)
     {
-        ligth.GetComponent<Light>().color = Color.red;
     }
 
     public override void OnTriggerExit(TrafficLightStateManager ligth)
     {
-        ligth.GetComponent<Light>().color = Color.green;
     }
 }

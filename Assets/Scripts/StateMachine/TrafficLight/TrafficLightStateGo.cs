@@ -8,12 +8,13 @@ public class TrafficLightStateGo : TrafficLightBaseState
     {
         type = "go";
         ligth.GetComponent<Light>().color = Color.green;
+        Debug.Log(type);
     }
 
 
     public override void UpdateState(TrafficLightStateManager ligth)
     {
-
+       
     }
 
     public override void OnTriggerEnter(TrafficLightStateManager ligth)
