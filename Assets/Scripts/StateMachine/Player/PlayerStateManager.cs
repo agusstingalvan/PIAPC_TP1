@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -59,9 +60,17 @@ public class PlayerStateManager : MonoBehaviour
         _currentState.UpdateState(this);
         
     }
+    IEnumerator WaitEnd()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("TpSceneTest2");
+    }
     private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.tag == "FinalLine")
+        {
+            StartCoroutine(WaitEnd());
+        }
         if(other.tag == "TrafficLight")
         {
             _trafficLightCurrent = other.GetComponentInChildren<TrafficLightStateManager>();
