@@ -9,7 +9,6 @@ public class TrafficLightStateStop : TrafficLightBaseState
     {
         type = "stop";
         ligth.GetComponent<Light>().color = Color.red;
-        Debug.Log(type);
     }
 
 

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class PlayerAI : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerAI : MonoBehaviour
     TrafficLightStateManager _tlsmanager;
 
     [SerializeField] TMPro.TextMeshProUGUI _flText;
+    [SerializeField] TMPro.TextMeshProUGUI _flTextVelocity;
 
 
     void Start()
@@ -51,6 +53,7 @@ public class PlayerAI : MonoBehaviour
         {
             _status = GetComponent<PlayerStateManager>().statusPlayer;
             _flText.text = _status;
+            _flTextVelocity.text = _agent.speed.ToString(); 
         }
     }
     

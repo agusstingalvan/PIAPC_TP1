@@ -8,7 +8,6 @@ public class TrafficLightStateGo : TrafficLightBaseState
     {
         type = "go";
         ligth.GetComponent<Light>().color = Color.green;
-        Debug.Log(type);
     }
 
 

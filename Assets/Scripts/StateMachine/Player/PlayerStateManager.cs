@@ -17,13 +17,9 @@ public class PlayerStateManager : MonoBehaviour
     PlayerWarnState _stateReviewing = new PlayerWarnState();
 
     public string statusPlayer;
-    public Camera camera;
-
 
     [SerializeField]
-    public float speedMax = 6.5f;
-    [SerializeField]
-    public float speedNormal = 3.5f;
+    public float speedNormal;
     [SerializeField]
     public float speedMin = 1.5f;
     // Start is called before the first frame update
@@ -33,6 +29,7 @@ public class PlayerStateManager : MonoBehaviour
         _currentState = _stateGo;
         _currentState.EnterState(this);
         statusPlayer = _currentState.status;
+        _agent.speed = speedNormal;
     }
 
     void Update()
@@ -78,7 +75,7 @@ public class PlayerStateManager : MonoBehaviour
             //    return;
             //}
             
-            string type = other.GetComponentInChildren<TrafficLightStateManager>()._currentState.type;
+            string type = _trafficLightCurrent._currentState.type;
             if(type == "stop")
             {
                 _currentState = _stateWait;

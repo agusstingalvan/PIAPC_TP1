@@ -8,7 +8,6 @@ public class TrafficLightWarn : TrafficLightBaseState
     {
         type = "warn";
         ligth.GetComponent<Light>().color = Color.yellow;
-        Debug.Log(type);
     }
 
 

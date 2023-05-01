@@ -7,7 +7,8 @@ public class PlayerWarnState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         status = "Reviewing";
-       player._agent.isStopped = false;
+        player._agent.isStopped = false;
+        player._agent.speed = player.speedMin;
     }
 
 
@@ -28,7 +29,7 @@ public class PlayerWarnState : PlayerBaseState
     {
         if (player._agent.speed <= player.speedMin)
         {
-            player._agent.speed = Random.Range(player.speedNormal, player.speedMax);
+            player._agent.speed = player.speedNormal;
         }
     }
 }

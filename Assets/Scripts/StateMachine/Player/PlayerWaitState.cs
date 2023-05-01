@@ -8,6 +8,7 @@ public class PlayerWaitState : PlayerBaseState
     {
         status = "Waiting";
         player._agent.isStopped = true;
+        player._agent.speed = 0;
     }
 
 
