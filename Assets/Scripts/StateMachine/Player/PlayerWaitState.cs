@@ -9,6 +9,7 @@ public class PlayerWaitState : PlayerBaseState
         status = "Waiting";
         player._agent.isStopped = true;
         player._agent.speed = 0;
+        player.statusPlayer = status;
     }
 
 
@@ -19,11 +20,11 @@ public class PlayerWaitState : PlayerBaseState
 
     public override void OnTriggerEnter(PlayerStateManager player)
     {
-
+        
     }
 
     public override void OnTriggerExit(PlayerStateManager player)
     {
-
+       
     }
 }

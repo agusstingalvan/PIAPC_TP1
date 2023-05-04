@@ -13,9 +13,9 @@ public class PlayerStateManager : MonoBehaviour
     private TrafficLightStateManager _trafficLightCurrent;
 
     //Instances of states
-    PlayerWaitState _stateWait = new PlayerWaitState();
-    PlayerGoState _stateGo = new PlayerGoState();
-    PlayerWarnState _stateReviewing = new PlayerWarnState();
+    public PlayerWaitState _stateWait = new PlayerWaitState();
+    public PlayerGoState _stateGo = new PlayerGoState();
+    public PlayerWarnState _stateReviewing = new PlayerWarnState();
 
     public string statusPlayer;
 
@@ -29,36 +29,11 @@ public class PlayerStateManager : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _currentState = _stateGo;
         _currentState.EnterState(this);
-        statusPlayer = _currentState.status;
-        _agent.speed = speedNormal;
     }
 
     void Update()
     {
-
-        if (_trafficLightCurrent != null)
-        {
-            
-            if (_trafficLightCurrent._currentState.type == "go")
-            {
-                _currentState.OnTriggerExit(this);
-                _currentState = _stateGo;
-                _currentState.EnterState(this);
-                statusPlayer = _currentState.status;
-            }else if(_trafficLightCurrent._currentState.type == "warn")
-            {
-                _currentState = _stateReviewing;
-                _currentState.EnterState(this);
-                statusPlayer = _currentState.status;
-            }else if(_trafficLightCurrent._currentState.type == "stop")
-            {
-                _currentState = _stateWait;
-                _currentState.EnterState(this);
-                statusPlayer = _currentState.status;
-            }
-        }
         _currentState.UpdateState(this);
-        
     }
     IEnumerator WaitEnd()
     {
@@ -71,44 +46,8 @@ public class PlayerStateManager : MonoBehaviour
         {
             StartCoroutine(WaitEnd());
         }
-        if(other.tag == "TrafficLight")
-        {
-            _trafficLightCurrent = other.GetComponentInChildren<TrafficLightStateManager>();
-            //if (_trafficLightCurrent.inLastLight)
-            //{
-            //    _agent.isStopped = true;
-            //    _agent.velocity = new Vector3(0, 0, 0);
-            //    _currentState = _stateWait;
-            //    _currentState.EnterState(this);
-            //    statusPlayer = "Gano";
-            //    return;
-            //}
-            
-            string type = _trafficLightCurrent._currentState.type;
-            if(type == "stop")
-            {
-                _currentState = _stateWait;
-                _currentState.EnterState(this);
-                statusPlayer = _currentState.status;
-            }else if (type == "warn")
-            {
-                _currentState = _stateReviewing;
-                _currentState.EnterState(this);
-                _currentState.OnTriggerEnter(this);
-                statusPlayer = _currentState.status;
-            }
-            
-        }
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "TrafficLight")
-        {
-            _currentState.OnTriggerExit(this);
-            _currentState = _stateGo;
-            _currentState.EnterState(this);
-            statusPlayer = _currentState.status;
-            _trafficLightCurrent = null;
-        }
     }
 }

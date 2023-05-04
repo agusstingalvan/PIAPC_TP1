@@ -8,7 +8,8 @@ public abstract class TrafficLightBaseState
 
     public abstract void UpdateState(TrafficLightStateManager ligth);
 
-    public abstract void OnTriggerEnter(TrafficLightStateManager ligth);
+    public abstract void OnTriggerEnter(TrafficLightStateManager ligth, Collider other);
 
-    public abstract void OnTriggerExit(TrafficLightStateManager ligth);
+    public abstract void OnTriggerStay(TrafficLightStateManager ligth, Collider other);
+    public abstract void OnTriggerExit(TrafficLightStateManager ligth, Collider other);
 }

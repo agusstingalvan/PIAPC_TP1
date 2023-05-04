@@ -55,37 +55,5 @@ public class PlayerAI : MonoBehaviour
             _flText.text = _status;
             _flTextVelocity.text = _agent.speed.ToString(); 
         }
-    }
-    
-
-    private void FuzzyLogic(Transform _targetPos, Transform _playerPos)
-    {
-        float distance = (_targetPos.position - _playerPos.position).magnitude;
-
-        //Debug.Log(distance);
-
-        if (distance >= 40)
-        {
-            _flText.text = _targetName + " lejos!";
-        }
-        if (distance < 45 && distance >= 30)
-        {
-            _flText.text = _targetName + " menos lejos..";
-        }
-        if (distance < 30 && distance >= 25)
-        {
-            _flText.text = _targetName + " cerca..";
-        }
-        if (distance < 25 && distance >= 20)
-        {
-            _flText.text = _targetName + " mas cerca..";
-        }
-        if (distance < 20 && distance >= 0)
-        {
-            _flText.text = _targetName + " llegué..";
-        }
-    }
-
-
-    
+    } 
 }

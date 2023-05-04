@@ -23,14 +23,17 @@ public class TrafficLightStateGo : TrafficLightBaseState
         }
     }
 
-    public override void OnTriggerEnter(TrafficLightStateManager ligth)
+    public override void OnTriggerEnter(TrafficLightStateManager ligth, Collider other)
     {
-        ligth.GetComponent<Light>().color = Color.green;
+       
     }
-
-    public override void OnTriggerExit(TrafficLightStateManager ligth)
+    public override void OnTriggerStay(TrafficLightStateManager ligth, Collider other)
     {
-        ligth.GetComponent<Light>().color = Color.red;
+
+    }
+    public override void OnTriggerExit(TrafficLightStateManager ligth, Collider other)
+    {
+        
     }
 }
 

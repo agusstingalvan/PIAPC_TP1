@@ -8,6 +8,11 @@ public class PlayerGoState : PlayerBaseState
     {
         status = "Going";
         player._agent.isStopped = false;
+        player.statusPlayer = status;
+        if (player._agent.speed <= player.speedMin)
+        {
+            player._agent.speed = player.speedNormal;
+        }
     }
 
 

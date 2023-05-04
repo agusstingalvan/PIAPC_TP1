@@ -9,6 +9,7 @@ public class PlayerWarnState : PlayerBaseState
         status = "Reviewing";
         player._agent.isStopped = false;
         player._agent.speed = player.speedMin;
+        player.statusPlayer = status;
     }
 
 
