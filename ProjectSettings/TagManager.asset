@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TrafficLight
   - FinalLine
+  - Obstacle
   layers:
   - Default
   - TransparentFX
