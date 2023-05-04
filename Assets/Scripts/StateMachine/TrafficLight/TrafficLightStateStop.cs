@@ -9,11 +9,21 @@ public class TrafficLightStateStop : TrafficLightBaseState
     {
         type = "stop";
         ligth.GetComponent<Light>().color = Color.red;
+        time = 0;
     }
 
 
     public override void UpdateState(TrafficLightStateManager ligth)
     {
+        time += Time.deltaTime;
+        if (time >= 7)
+        {
+            //Primero guardo el estado actual que pasa a ser el viejo estado
+            ligth._oldState = ligth._currentState;
+            //Segundo guardo el estado actual que pasa a ser el proximo estado
+            ligth._currentState = ligth._stateWarn;
+            ligth._currentState.EnterState(ligth);
+        }
     }
 
     public override void OnTriggerEnter(TrafficLightStateManager ligth)
