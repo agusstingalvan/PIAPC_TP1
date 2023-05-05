@@ -39,7 +39,7 @@ public class TrafficLightWarn : TrafficLightBaseState
     }
     public override void OnTriggerStay(TrafficLightStateManager ligth, Collider other)
     {
-        //Si esta en el trigger de la semaforo en rojo, actualiza el estado del vehiculo a REVISANDO.
+        //Si esta en el trigger de la semaforo en amarrillo, actualiza el estado del vehiculo a REVISANDO.
         other.GetComponent<PlayerStateManager>()._currentState = other.GetComponent<PlayerStateManager>()._stateReviewing;
         other.GetComponent<PlayerStateManager>()._currentState.EnterState(other.GetComponent<PlayerStateManager>());
     }

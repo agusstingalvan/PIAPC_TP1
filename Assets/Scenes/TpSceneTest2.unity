@@ -1476,8 +1476,12 @@ PrefabInstance:
       value: semaforo1
       objectReference: {fileID: 0}
     - target: {fileID: 2714402995048768404, guid: bdf031e19461c3b4fb10483035b7be60, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714402995048768404, guid: bdf031e19461c3b4fb10483035b7be60, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 3377892722996361518, guid: bdf031e19461c3b4fb10483035b7be60, type: 3}
       propertyPath: m_RootOrder
@@ -2268,11 +2272,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2398086534932736846, guid: c28645ad71c9b9b489256a6c9f7a75af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 2398086534932736846, guid: c28645ad71c9b9b489256a6c9f7a75af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.051055
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 2398086534932736846, guid: c28645ad71c9b9b489256a6c9f7a75af, type: 3}
       propertyPath: m_LocalRotation.w
